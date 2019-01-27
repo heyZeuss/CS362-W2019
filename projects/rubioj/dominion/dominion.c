@@ -7,8 +7,8 @@
 
 void playSmithy(int currentPlayer, struct gameState *state, int handPos){ 
       //+3 Cards
-    for (int i = 0; i < 3; i++)
-  //  while(1)
+  //  for (int i = 0; i < 3; i++)
+  while(1)
   {
     drawCard(currentPlayer, state);
   }
