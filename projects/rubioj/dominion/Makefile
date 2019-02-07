@@ -29,6 +29,72 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o
+	echo "unittest1.c:" >> unittestresults.out
+	gcc dominion.c rngs.c unittest1.c -lm -o unittest1 $(CFLAGS)
+	unittest1 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "unittest2.c:" >> unittestresults.out
+	gcc dominion.c rngs.c unittest2.c -lm -o unittest2 $(CFLAGS)
+	unittest2 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "unittest3.c:" >> unittestresults.out
+	gcc dominion.c rngs.c unittest3.c -lm -o unittest3 $(CFLAGS)
+	unittest3 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "unittest4.c:" >> unittestresults.out
+	gcc dominion.c rngs.c unittest4.c -lm -o unittest4 $(CFLAGS)
+	unittest4 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "cardtest1.c:" >> unittestresults.out
+	gcc dominion.c rngs.c cardtest1.c -lm -o cardtest1 $(CFLAGS)
+	cardtest1 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "cardtest2.c:" >> unittestresults.out
+	gcc dominion.c rngs.c cardtest2.c -lm -o cardtest2 $(CFLAGS)
+	cardtest2 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "cardtest3.c:" >> unittestresults.out
+	gcc -o cardtest3 dominion.c rngs.c cardtest3.c $(CFLAGS)
+	cardtest3 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+	
+	echo "cardtest4.c:" >> unittestresults.out
+	gcc dominion.c rngs.c cardtest4.c -lm -o cardtest4 $(CFLAGS)
+	cardtest4 >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out 
+
+unittest1: unittest1.c dominion.o
+	gcc dominion.c rngs.c unittest1.c -lm -o unittest1  $(CFLAGS)
+
+unittest2: unittest2.c dominion.o
+	gcc dominion.c rngs.c unittest2.c -lm -o unittest2 $(CFLAGS)
+	
+unittest3: unittest3.c dominion.o
+	gcc dominion.c rngs.c unittest3.c -lm -o unittest3 $(CFLAGS)
+	
+unittest4: unittest4.c dominion.o
+	gcc dominion.c rngs.c unittest4.c -lm -o unittest4 $(CFLAGS)
+	
+cardtest1: cardtest1.c dominion.o
+	gcc dominion.c rngs.c cardtest1.c -lm -o cardtest1 $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o
+	gcc dominion.c rngs.c cardtest2.c -lm -o cardtest2 $(CFLAGS)
+
+cardtest3: cardtest3.c dominion.o
+	gcc dominion.c rngs.c cardtest3.c -lm -o cardtest3 $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o
+	gcc dominion.c rngs.c cardtest4.c  -lm -o cardtest4 $(CFLAGS)
+
+
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
