@@ -1,6 +1,6 @@
 //José-Antonio D. Rubio
 //CS 362-400
-//cardtest1.c
+//cardtest3.c
 
 #include "dominion.h"
 #include "dominion_helpers.h"
