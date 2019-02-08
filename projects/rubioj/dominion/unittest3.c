@@ -1,6 +1,6 @@
 //José-Antonio D. Rubio
 //CS 362-400
-//cardtest4.c
+//unittest3.c
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -22,26 +22,45 @@ int main()
            sea_hag, tribute, smithy};
 
 
-  initializeGame(2, k, 30, &G);
+  initializeGame(4, k, 30, &G);
 
   printf("testing endTurn\n");
 
 
 	for(i=0; i<G.numPlayers; i++){
 		printf("Player %d hand count: %d\n", i, G.handCount[i]);
-		printf("Player %d actions count: %d\n", i, G.numActions);
-		printf("Player %d coin count: %d\n", i, G.coins);
-		printf("Player %d buy count: %d\n", i, G.numBuys);
-
 	}
-	endTurn(&G);
+	
+		printf("-----------------\n");
+		endTurn(&G);
 
 
 	for(i=0; i<G.numPlayers; i++){
 		printf("Player %d hand count after endTurn call: %d\n", i, G.handCount[i]);
-		printf("Player %d actions count: %d\n", i, G.numActions);
-		printf("Player %d coin count: %d\n", i, G.coins);
-		printf("Player %d buy count: %d\n", i, G.numBuys);
+	}
+	
+		printf("-----------------\n");
+		endTurn(&G);
+
+
+	for(i=0; i<G.numPlayers; i++){
+		printf("Player %d hand count after endTurn call: %d\n", i, G.handCount[i]);
+	}
+	
+		printf("-----------------\n");
+		endTurn(&G);
+
+
+	for(i=0; i<G.numPlayers; i++){
+		printf("Player %d hand count after endTurn call: %d\n", i, G.handCount[i]);
+	}
+	
+		printf("-----------------\n");
+		endTurn(&G);
+
+
+	for(i=0; i<G.numPlayers; i++){
+		printf("Player %d hand count after endTurn call: %d\n", i, G.handCount[i]);
 	}
 		
 return 0;
