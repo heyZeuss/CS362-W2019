@@ -33,28 +33,28 @@ player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 unittest1: playdom
-	gcc dominion.c rngs.c unittest1.c -o unittest1  $(CFLAGS)
+	gcc dominion.o rngs.o unittest1.c -o unittest1  $(CFLAGS)
 
 unittest2: playdom
-	gcc dominion.c rngs.c unittest2.c -o unittest2 $(CFLAGS)
+	gcc dominion.o rngs.o unittest2.c -o unittest2 $(CFLAGS)
 	
 unittest3:playdom
-	gcc dominion.c rngs.c unittest3.c -o unittest3 $(CFLAGS)
+	gcc dominion.o rngs.o unittest3.c -o unittest3 $(CFLAGS)
 	
 unittest4: playdom
-	gcc dominion.c rngs.c unittest4.c -o unittest4 $(CFLAGS)
+	gcc dominion.o rngs.o unittest4.c -o unittest4 $(CFLAGS)
 	
 cardtest1: playdom
-	gcc dominion.c rngs.c cardtest1.c -o cardtest1 $(CFLAGS)
+	gcc dominion.o rngs.o cardtest1.c -o cardtest1 $(CFLAGS)
 
 cardtest2: playdom
-	gcc dominion.c rngs.c cardtest2.c -o cardtest2 $(CFLAGS)
+	gcc dominion.o rngs.o cardtest2.c -o cardtest2 $(CFLAGS)
 
 cardtest3: playdom
-	gcc dominion.c rngs.c cardtest3.c -o cardtest3 $(CFLAGS)
+	gcc dominion.o rngs.o cardtest3.c -o cardtest3 $(CFLAGS)
 
 cardtest4: playdom
-	gcc dominion.c rngs.c cardtest4.c -o cardtest4 $(CFLAGS)
+	gcc dominion.o rngs.o cardtest4.c -o cardtest4 $(CFLAGS)
 
 unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1 >> unittestresults.out
