@@ -1,10 +1,10 @@
 CFLAGS= -Wall -fpic -coverage -lm -std=c99
 
 rngs.o: rngs.h rngs.c
-	gcc -c rngs.c -g  $(CFLAGS)
+	gcc -c rngs.c -g $(CFLAGS)
 
 dominion.o: dominion.h dominion.c rngs.o
-	gcc -c dominion.c -g  $(CFLAGS)
+	gcc -c dominion.c -g $(CFLAGS)
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
@@ -29,11 +29,59 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+
+unittest1: playdom
+	gcc dominion.o rngs.o unittest1.c -o unittest1  $(CFLAGS)
+
+unittest2: playdom
+	gcc dominion.o rngs.o unittest2.c -o unittest2 $(CFLAGS)
+	
+unittest3:playdom
+	gcc dominion.o rngs.o unittest3.c -o unittest3 $(CFLAGS)
+	
+unittest4: playdom
+	gcc dominion.o rngs.o unittest4.c -o unittest4 $(CFLAGS)
+	
+cardtest1: playdom
+	gcc dominion.o rngs.o cardtest1.c -o cardtest1 $(CFLAGS)
+
+cardtest2: playdom
+	gcc dominion.o rngs.o cardtest2.c -o cardtest2 $(CFLAGS)
+
+cardtest3: playdom
+	gcc dominion.o rngs.o cardtest3.c -o cardtest3 $(CFLAGS)
+
+cardtest4: playdom
+	gcc dominion.o rngs.o cardtest4.c -o cardtest4 $(CFLAGS)
+
+unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	./unittest1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./cardtest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+
+randomtestadventurer: playdom
+	gcc dominion.o rngs.o randomtestadventurer.c -o randomtestadventurer $(CFLAGS)
+
+randomtestresults: randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b randomtestadventurer.c >> randomtestadventurer.out
 
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
