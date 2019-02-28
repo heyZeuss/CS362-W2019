@@ -18,7 +18,7 @@
 
 int checkAdventurer(int p, struct gameState *post) {
   int r, i, cardDrawn;
-  int bonus = 0, drawntreasure=0, playerTotalCards=0;
+  int bonus = 0, drawntreasure=0;
   int temphand[500];
   int z = 0;// this is the counter for the temp hand
 
@@ -29,9 +29,9 @@ int checkAdventurer(int p, struct gameState *post) {
 
  for(i=0; i<2; i++){
   if (pre.deckCount[p] <1){//if the deck is empty we need to shuffle discard and add to deck
-    shuffle(p, post);
+    shuffle(p, &pre);
   }
-  drawCard(p, post);
+  drawCard(p, &pre);
   cardDrawn = pre.hand[p][pre.handCount[p]-1];//top card of hand is most recently drawn card.
   if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
     drawntreasure++;
@@ -50,14 +50,17 @@ int checkAdventurer(int p, struct gameState *post) {
   assert (r == 0);
 
   if(memcmp(&pre, post, sizeof(struct gameState)) != 0){
-        printf("Gamestates not equal - test failed\n");
+        //game states are not equal
+        return 1;
   }
 
+ return 0;
 }
 
 int main () {
 
-  int i, n, r, p, deckCount, discardCount, handCount;
+  int r, p, deckCount, discardCount, handCount;
+  int numFails = 0, totalRuns = 0;
 
   int k[10] = {adventurer, council_room, feast, gardens, mine,
                remodel, smithy, village, baron, great_hall};
@@ -83,12 +86,15 @@ int main () {
           memset(G.discard[p], 0, sizeof(int) * discardCount);
           G.handCount[p] = handCount;
           memset(G.hand[p], 0, sizeof(int) * handCount);
-          checkAdventurer(p, &G);
+          numFails += checkAdventurer(p, &G);
         }
       }
     }
   }
 
+  totalRuns = deckCount * discardCount * handCount * p;
+
+  printf("%d test(s) ran\t\t%d test(s) failed for unequal gamestates\n", totalRuns, numFails);
+
   return 0;
 }
-
