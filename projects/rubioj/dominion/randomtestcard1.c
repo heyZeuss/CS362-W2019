@@ -1,6 +1,6 @@
 //José-Antonio D. Rubio
 //CS 362-400
-//randomtestadventure.c
+//randomtestcard1.c
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -9,12 +9,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
-#include <time.h> 
 #include <math.h>
 
-#define NUM_SECS 15
-// #define MAX_ITERATIONS 10
-// void delay(void); // function declaration
 
 int checkGreatHall(int p, struct gameState *post) {
   int r, i;
@@ -37,10 +33,6 @@ int checkGreatHall(int p, struct gameState *post) {
     //discard card from hand
     discardCard(handPos, p, &pre, 0);
   }
-
-     // printf("Pre Hand count: %d\n", pre.handCount[p]);
-     //  printf("Post Hand count: %d\n", post->handCount[p]);
- //printf("Pre numActions: %d\tPost numActions: %d\n",pre.numActions, post->numActions);
 
 
 if (pre.numActions < post->numActions) {

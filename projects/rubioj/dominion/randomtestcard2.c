@@ -40,7 +40,7 @@ int checkVillage(int p, struct gameState *post) {
 
      // printf("Pre Hand count: %d\n", pre.handCount[p]);
      //  printf("Post Hand count: %d\n", post->handCount[p]);
- printf("Pre numActions: %d\tPost numActions: %d\n",pre.numActions, post->numActions);
+ //printf("Pre numActions: %d\tPost numActions: %d\n",pre.numActions, post->numActions);
 
 
   if (pre.numActions < post->numActions) {
