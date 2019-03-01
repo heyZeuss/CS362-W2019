@@ -83,13 +83,17 @@ randomtestcard1: playdom
 randomtestcard2: playdom
 	gcc dominion.o rngs.o randomtestcard2.c -o randomtestcard2 $(CFLAGS)
 
-randomtestresults: randomtestadventurer randomtestcard1
-	./randomtestadventurer >> randomtestadventurer.out
-	gcov -b randomtestadventurer.c >> randomtestadventurer.out
-	./randomtestcard1 >> randomtestcard1.out
-	gcov -b randomtestcard1.c >> randomtestcard1.out
-	./randomtestcard2 >> randomtestcard2.out
-	gcov -b randomtestcard2.c >> randomtestcard2.out
+
+randomresults: randomtestadventurer randomtestcard1 randomtestcard2
+	./randomtestadventurer > randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	./randomtestcard1> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	./randomtestcard2> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
 
 all: playdom player 
 
